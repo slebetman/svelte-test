@@ -1,8 +1,9 @@
 <script>
 	import router from "page";
+	import Navbar from './components/Navbar.svelte';
 	import Home from './pages/Home.svelte';
 	import About from './pages/About.svelte';
-	import Navbar from './components/Navbar.svelte';
+	import Bitcoin from './pages/Bitcoin.svelte';
 
 	let page;
 	let path;
@@ -18,6 +19,7 @@
 
 	router('/', goto(Home));
 	router('/about', goto(About));
+	router('/bitcoin', goto(Bitcoin));
 
 	router.start();
 </script>
@@ -41,11 +43,6 @@
 		:global(main) {
 			max-width: none;
 		}
-	}
-
-	:global(a.active) {
-		font-weight: bold;
-		color: #ccddee;
 	}
 </style>
 

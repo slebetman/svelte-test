@@ -1,10 +1,8 @@
 <script>
     import Spinner from '../components/Spinner.svelte';
+    import getFact from '../api/cat-facts.js';
 
-    export let ctx;
-    export const fact = fetch('https://catfact.ninja/fact')
-        .then(x => x.json())
-        .then(x => x.fact);
+    const fact = getFact();
 </script>
 
 <main>
@@ -13,8 +11,8 @@
     <div class="fact">
         {#await fact}
             <Spinner />
-        {:then x}
-            {x}
+        {:then text}
+            {text}
         {:catch err}
             Error: {err}
         {/await}
