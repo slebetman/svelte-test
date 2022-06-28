@@ -29,7 +29,7 @@
     .fact {
         min-width: 300px;
         text-align: center;
-        margin: 0 calc(( 100% - 480px ) / 2);
+        margin: 0 calc(( 100% - 300px ) / 2);
         font-style: italic;
         font-family: serif;
     }
