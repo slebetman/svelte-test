@@ -1,15 +1,10 @@
 <script>
     export let page;
-
-    const ROUTES = {
-        '/': 'Home',
-        '/about': 'About',
-        '/bitcoin': 'Bitcoin Price',
-    }
+    export let routes;
 </script>
 
 <nav>
-    {#each Object.entries(ROUTES) as [url, label]}
+    {#each Object.entries(routes) as [url, label]}
         <a href="{url}" class="{url === page ? 'active' : ''}">
             {label}
         </a>

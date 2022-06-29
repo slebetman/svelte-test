@@ -1,25 +1,27 @@
 <script>
-	import router from "page";
+	import router from 'page';
 	import Navbar from './components/Navbar.svelte';
 	import Home from './pages/Home.svelte';
 	import About from './pages/About.svelte';
 	import Bitcoin from './pages/Bitcoin.svelte';
 
-	let page;
-	let path;
+	let currentPage;
+	let currentPath;
 	let context;
+	let ROUTES = {}
 
-	function goto (component) {
-		return (ctx, next) => {
-			path = ctx.pathname;
-			page = component;
+	function page (url, component, label) {
+		ROUTES[url] = label ? label : component.name;
+		router(url, (ctx, next) => {
+			currentPath = ctx.pathname;
+			currentPage = component;
 			context = ctx;
-		}
+		});
 	}
 
-	router('/', goto(Home));
-	router('/about', goto(About));
-	router('/bitcoin', goto(Bitcoin));
+	page('/', Home);
+	page('/about', About);
+	page('/bitcoin', Bitcoin, 'Bitcoin Price');
 
 	router.start();
 </script>
@@ -46,5 +48,5 @@
 	}
 </style>
 
-<Navbar page={path}/>
-<svelte:component this={page} ctx={context} />
+<Navbar page={currentPath} routes={ROUTES}/>
+<svelte:component this={currentPage} ctx={context} />
